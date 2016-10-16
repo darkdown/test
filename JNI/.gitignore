@@ -1,0 +1,10 @@
+#.classpath
+#.project
+#.gitignore
+.settings/org.eclipse.jdt.core.prefs
+bin/TestJNI.class
+#lib/TestJNI.c
+#lib/TestJNI.h
+#lib/TestJNI.o
+#lib/lib.so
+#src/TestJNI.java

@@ -1,0 +1,47 @@
+.score {
+	color: red;
+	margin-left: 10px;
+	margin-bottom: -20px;
+	display: inline-block;
+}
+
+.context {
+	padding: 20px; 
+	background-color:#B5DAFF;
+}
+
+.ele_1 { 
+	background-image: url("./images/ele-1.png");
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+}
+
+.ele_2 { 
+	background-image: url("./images/ele-2.png");
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+}
+
+.ele_3 { 
+	background-image: url("./images/ele-3.png");
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+}
+
+.ele_4 { 
+	background-image: url("./images/ele-4.png");
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+}
