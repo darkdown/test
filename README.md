@@ -1,37 +1,26 @@
-test
-================================
-
+#test
 test anything for myself.
 
---------------------------------
-GoGame:
+#GoGame:
     simple Go Game, now not rule implemention.
 
-================================
-JNI:
+#JNI:
     simple JNI implemention.
 
-================================
-Rest:
+#Rest:
     reminder you to rest batch file.
 
-================================
-IE9_test:
+#IE9_test:
     IE 9 test
 
-================================
-OS-0.0.2:
+#OS-0.0.2:
     Operating System version 0.0.2
 
-================================
-SQLGenerater:
+#SQLGenerater:
     SQL generater VBA scripts
 
-================================
-scripts:
+#scripts:
     the utils of scripts 
 
-
-================================
-eleGame:
+#eleGame:
     game of effect
