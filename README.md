@@ -1,5 +1,5 @@
 #test
-    test anything for myself.
+test anything for myself.
 
 #GoGame:
     simple Go Game, now not rule implemention.
