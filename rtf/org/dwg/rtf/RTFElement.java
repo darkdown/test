@@ -1,8 +1,6 @@
 package org.dwg.rtf;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -12,7 +10,6 @@ import org.apache.commons.lang.StringUtils;
 public class RTFElement {
     private String              originText;
     private String              tagName;
-    private List<String>        attrs;
     private Map<String, String> attrMaps;
     private String              text;
 
@@ -21,11 +18,10 @@ public class RTFElement {
     }
 
     public void addAttr(String key, String value) {
-        if (null == attrs) {
-            attrs = new ArrayList<String>();
+        if (null == attrMaps) {
             attrMaps = new HashMap<String, String>();
         }
-        if (!attrs.contains(key)) {
+        if (!attrMaps.containskey(key)) {
             attrs.add(key);
         }
         attrMaps.put(key, value);
@@ -51,53 +47,97 @@ public class RTFElement {
             }
         }
         return rtfElement;
-    }
 
-    public String getOriginText() {
-        return originText;
-    }
 
-    public void setOriginText(String originText) {
-        this.originText = originText;
-    }
+        public static final String  RTF_ATTR_TYPE       = "t";
+        public static final String  RTF_ATTR_TYPE_AT    = "at";
+        public static final String  RTF_ATTR_TYPE_TOPIC = "top";
+        public static final String  RTF_ATTR_TYPE_EMOJI = "emo";
+        public static final String  RTF_ATTR_ID         = "id";
 
-    public String getTagName() {
-        return tagName;
-    }
+        private String              originText;
+        private String              tagName;
+        private Map<String, String> attrMaps;
+        private String              text;
 
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
+        public int length() {
+            if (RTF_ATTR_TYPE_EMOJI.equals(getAttr(RTF_ATTR_TYPE))) {
+                return 1;
+            }
+            return StringUtils.length(text);
+        }
 
-    public String getText() {
-        return text;
-    }
+        public void setAttr(String key, String value) {
+            if (null == attrMaps) {
+                attrMaps = new HashMap<String, String>();
+            }
+            attrMaps.put(key, value);
+        }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public String getAttr(String key) {
+            if (MapUtils.isNotEmpty(attrMaps)) {
+                return StringUtils.stripToEmpty(attrMaps.get(key));
+            }
+            return StringUtils.EMPTY;
+        }
 
-    @Override
-    public String toString() {
-        String str = StringUtils.EMPTY;
-        if (StringUtils.isNotBlank(tagName)) {
-            str += "<";
-            str += tagName;
-            if (CollectionUtils.isNotEmpty(attrs)) {
+        public PostRTFElement clone() {
+            PostRTFElement rtfElement = new PostRTFElement();
+            rtfElement.originText = originText;
+            rtfElement.tagName = tagName;
+            rtfElement.text = text;
+            if (MapUtils.isNotEmpty(attrMaps)) {
+                Set<String> keySet = attrMaps.keySet();
+                for (String key : keySet) {
+                    rtfElement.setAttr(key, attrMaps.get(key));
+                }
+            }
+            return rtfElement;
+        }
+
+        public String getOriginText() {
+            return originText;
+        }
+
+        public void setOriginText(String originText) {
+            this.originText = originText;
+        }
+
+        public String getTagName() {
+            return tagName;
+        }
+
+        public void setTagName(String tagName) {
+            this.tagName = tagName;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        public String toString() {
+            String str = StringUtils.EMPTY;
+            if (StringUtils.isNotBlank(tagName)) {
+                str += "<";
+                str += tagName;
                 if (MapUtils.isNotEmpty(attrMaps)) {
-                    for (String key : attrs) {
+                    Set<String> keySet = attrMaps.keySet();
+                    for (String key : keySet) {
                         str += " " + key;
                         str += "=\"" + attrMaps.get(key) + "\"";
                     }
                 }
+                str += ">";
+                str += text;
+                str += "</" + tagName + ">";
+            } else {
+                str = text;
             }
-            str += ">";
-            str += text;
-            str += "</" + tagName + ">";
-        } else {
-            str = text;
+            return str;
         }
-        return str;
-    }
-
 }
