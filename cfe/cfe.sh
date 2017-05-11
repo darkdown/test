@@ -8,8 +8,8 @@
 
 replace_encoding(){
 	from_encoding=`file -b --mime-encoding $1`
-	echo "[MSG] "$1 >> $log
-	echo "[MSG] from "$from_encoding" to "$to_encoding >> $log
+	echo "[MSG] $1" >> $log
+	echo "[MSG] from $from_encoding to $to_encoding" >> $log
 	if [ "$from_encoding" != "$to_encoding" ]
 	then
 		iconv -f $from_encoding -t $to_encoding $1 > $1.utf-8
