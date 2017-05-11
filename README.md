@@ -24,3 +24,7 @@ test anything for myself.
 
 #eleGame:
     game of effect
+
+#cfe:
+    converter files encoding
+
