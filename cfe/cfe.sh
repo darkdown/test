@@ -2,8 +2,8 @@
 # 
 # recursive check files encoding and converter to new encoding
 #
-# cfe.sh (path) (file name filter) (to encoding)
-# etc. : ./cfe.sh ./ *.txt utf-8
+# cfe.sh (to encoding) (path) (file name filter)
+# etc. : ./cfe.sh utf-8 ./ *.txt 
 #
 
 replace_encoding(){
@@ -31,6 +31,6 @@ replace_encoding(){
 }
 
 export -f replace_encoding 
-export to_encoding=$3
+export to_encoding=$1
 
-find $1 -name $2 -exec bash -c 'replace_encoding "$0"' {} \;
+find $2 -name $3 -exec bash -c 'replace_encoding "$0"' {} \;
